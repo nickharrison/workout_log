@@ -20,10 +20,24 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  def update
+
+
+  def edit
   end
 
+
+
+  def update
+    if @workout.update(workout_params)
+      redirect_to @workout
+    else
+      render 'edit'
+    end
+end
+
   def destroy
+    @workout.destroy
+    redirect_to root_path
   end
 
   private
@@ -35,7 +49,5 @@ class WorkoutsController < ApplicationController
   def find_workout
     @workout = Workout.find(params[:id])
   end
-
-
 
 end
